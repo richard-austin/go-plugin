@@ -8,6 +8,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import java.io.*
+import java.net.URI
 import java.net.URL
 
 object PluginUtils {
@@ -19,7 +20,11 @@ object PluginUtils {
     }
 
     fun binaryExists(binary: String): Boolean {
-        val process = Runtime.getRuntime().exec("which $binary")
+        val command = ArrayList<String>()
+        command.add("which")
+        command.add(binary)
+        val proc = ProcessBuilder(command)
+        val process = proc.start()
         process.waitFor()
         return process.exitValue() == 0
     }
@@ -49,7 +54,7 @@ object PluginUtils {
 
     fun downloadFile(url: String, outfile: File) {
         try {
-            val binaryInputStream = URL(url).openStream()
+            val binaryInputStream = URI(url).toURL().openStream()
             binaryInputStream.use { inputStream ->
                 outfile.outputStream().use { outputStream ->
                     inputStream.copyTo(outputStream)
