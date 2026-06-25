@@ -6,7 +6,7 @@ import com.fussionlabs.gradle.tasks.TestTask
 import com.fussionlabs.gradle.utils.PluginUtils.ext
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.configurationcache.extensions.capitalized
+import org.gradle.internal.extensions.stdlib.capitalized
 
 class GoPlugin: Plugin<Project> {
     override fun apply(project: Project) {

@@ -8,8 +8,8 @@
 plugins {
     id("jacoco")
     id("java-gradle-plugin")
-    id("com.gradle.plugin-publish") version "1.2.1"
-    id("org.jetbrains.kotlin.jvm") version("1.9.10")
+    id("com.gradle.plugin-publish") version "2.1.1"
+    id("org.jetbrains.kotlin.jvm") version("2.4.20-Beta1")
 }
 
 version = "0.7.0"
@@ -22,12 +22,13 @@ repositories {
 
 kotlin {
     jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_1_8.majorVersion))
+        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
     }
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.1"))
+    testImplementation(platform("org.junit:junit-bom:5.13.4"))
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 

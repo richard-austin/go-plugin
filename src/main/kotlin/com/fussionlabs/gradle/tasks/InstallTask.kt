@@ -9,9 +9,11 @@ import com.fussionlabs.gradle.utils.PluginUtils.getOs
 import com.fussionlabs.gradle.utils.PluginUtils.goBinary
 import com.fussionlabs.gradle.utils.PluginUtils.goInstalled
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.TaskAction
 import java.io.File
 
+@CacheableTask
 open class InstallTask: DefaultTask() {
     init {
         onlyIf {

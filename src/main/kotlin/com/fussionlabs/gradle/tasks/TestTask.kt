@@ -1,11 +1,13 @@
 package com.fussionlabs.gradle.tasks
 
 import com.fussionlabs.gradle.utils.PluginUtils.ext
+import org.gradle.api.tasks.CacheableTask
+import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.InputFiles
-import org.gradle.api.tasks.OutputFile
 
-open class TestTask: GoTask() {
-
+@CacheableTask
+abstract class TestTask : GoTask() {
+    @Classpath
     @InputFiles
     var inputFiles = project.fileTree(project.rootDir)
         .matching{ matchingFile ->

@@ -2,11 +2,14 @@ package com.fussionlabs.gradle.tasks
 
 import com.fussionlabs.gradle.utils.PluginUtils.ext
 import com.fussionlabs.gradle.utils.PluginUtils.toInt
+import org.gradle.api.tasks.CacheableTask
+import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputFile
 
-open class BuildTask: GoTask() {
+@CacheableTask
+abstract class BuildTask : GoTask() {
     @Input
     var os = ""
 
@@ -16,6 +19,7 @@ open class BuildTask: GoTask() {
     @Input
     var ldFlagsConfig = mapOf<String, String>()
 
+    @Classpath
     @InputFiles
     var inputFiles = project.fileTree(project.rootDir)
         .matching{ matchingFile ->
@@ -24,6 +28,13 @@ open class BuildTask: GoTask() {
 
     @OutputFile
     var outputBinary = ""
+//    override fun getObjectFactory(): ObjectFactory {
+//        return super.getObjectFactory()
+//    }
+//
+//    override fun getExecActionFactory(): ExecActionFactory {
+//        return super.getExecActionFactory()
+//    }
 
     override fun exec() {
         // Setup task environment
