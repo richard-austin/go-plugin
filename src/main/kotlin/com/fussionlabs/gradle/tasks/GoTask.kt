@@ -35,7 +35,8 @@ abstract class GoTask : AbstractExecTask<GoTask>(GoTask::class.java) {
         dependsOn(GO_INSTALL_TASK)
     }
 
-    override fun exec() {
+    override fun exec()
+    {
         val goBinary = goBinary(project)
         val goVersion = project.ext.goVersion.ifEmpty {
             project.ext.defaultGoVersion

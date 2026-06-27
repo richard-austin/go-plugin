@@ -29,7 +29,9 @@ class GoPlugin: Plugin<Project> {
             project.tasks.register(GO_INSTALL_TASK, InstallTask::class.java) { installTask ->
                 installTask.group = GO_PLUGIN_GROUP
                 installTask.description = "Install Golang"
-
+                installTask.goVersion.set(project.ext.goVersion)
+                installTask.defaultGoVersion.set(project.ext.defaultGoVersion)
+                installTask.rootDir.set(project.rootDir)
             }
 
             // Setup build tasks

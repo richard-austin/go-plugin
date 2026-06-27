@@ -10,13 +10,13 @@ import org.gradle.api.tasks.OutputFile
 
 @CacheableTask
 abstract class BuildTask : GoTask() {
-    @Input
+    @get:Input
     var os = ""
 
-    @Input
+    @get:Input
     var arch = ""
 
-    @Input
+    @get:Input
     var ldFlagsConfig = mapOf<String, String>()
 
     @Classpath
