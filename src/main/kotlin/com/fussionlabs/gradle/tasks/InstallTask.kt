@@ -3,7 +3,6 @@ package com.fussionlabs.gradle.tasks
 import com.fussionlabs.gradle.GO_SETUP_DIR
 import com.fussionlabs.gradle.GRADLE_FILES_DIR
 import com.fussionlabs.gradle.utils.PluginUtils
-import com.fussionlabs.gradle.utils.PluginUtils.ext
 import com.fussionlabs.gradle.utils.PluginUtils.getArch
 import com.fussionlabs.gradle.utils.PluginUtils.getOs
 import com.fussionlabs.gradle.utils.PluginUtils.goBinary
