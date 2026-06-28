@@ -48,7 +48,7 @@ abstract class InstallTask @Inject constructor(
         val url = "https://go.dev/dl/go${golangVersion}.${getOs()}-${getArch()}.tar.gz"
         val outputLocation = "$buildDir/go${golangVersion}.${getOs()}-${getArch()}.tar.gz"
 
-        if (!File(goBinary(project)).exists()) {
+        if (!File(goBinary(golangVersion, rootDir.get())).exists()) {
             // Setup the build directory
             buildDir.mkdirs()
 

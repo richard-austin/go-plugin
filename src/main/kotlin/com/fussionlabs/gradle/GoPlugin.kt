@@ -57,7 +57,6 @@ class GoPlugin: Plugin<Project> {
             val testTask = project.tasks.register("test", TestTask::class.java) { testTask ->
                 testTask.group = GO_PLUGIN_GROUP
                 testTask.description = "Run tests"
-
             }
 
             checkTask.dependsOn(testTask)

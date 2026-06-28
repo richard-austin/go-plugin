@@ -9,7 +9,6 @@ import org.gradle.api.GradleException
 import org.gradle.api.Project
 import java.io.*
 import java.net.URI
-import java.net.URL
 
 object PluginUtils {
     val Project.ext: PluginExtension
@@ -79,12 +78,12 @@ object PluginUtils {
         return project.ext.goVersion.ifEmpty { project.ext.defaultGoVersion }
     }
 
-    fun goBinary(project: Project): String {
-        val goVersion = project.ext.goVersion
+    fun goBinary(goVersion: String, rootDir: File): String {
+        val goVersion = goVersion
         return if(goInstalled() && goVersion.isEmpty()) {
             GO_BINARY
         } else {
-            "${project.rootDir}/$GRADLE_FILES_DIR/$GO_SETUP_DIR-$goVersion/go/bin/$GO_BINARY"
+            "${rootDir}/$GRADLE_FILES_DIR/$GO_SETUP_DIR-$goVersion/go/bin/$GO_BINARY"
         }
     }
 
