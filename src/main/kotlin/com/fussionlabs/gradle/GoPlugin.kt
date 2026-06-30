@@ -1,12 +1,14 @@
 package com.fussionlabs.gradle
 
 import com.fussionlabs.gradle.tasks.BuildTask
-import com.fussionlabs.gradle.tasks.InstallTask
+import com.fussionlabs.gradle.tasks.DownloadGoTask
+import com.fussionlabs.gradle.tasks.InstallGoTask
 import com.fussionlabs.gradle.tasks.TestTask
 import com.fussionlabs.gradle.utils.PluginUtils.ext
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.internal.extensions.stdlib.capitalized
+import kotlin.jvm.java
 
 class GoPlugin: Plugin<Project> {
     override fun apply(project: Project) {
@@ -25,13 +27,22 @@ class GoPlugin: Plugin<Project> {
             val checkTask = project.tasks.getByName("check")
             val assembleTask = project.tasks.getByName("assemble")
 
+            val downloadGoTask = project.tasks.register(GO_DOWNLOAD_TASK, DownloadGoTask::class.java) { downloadTask ->
+                downloadTask.group = GO_PLUGIN_GROUP
+                downloadTask.description = "Download Golang"
+                downloadTask.goVersion.set(project.ext.goVersion)
+                downloadTask.defaultGoVersion.set(project.ext.defaultGoVersion)
+                downloadTask.rootDir.set(project.rootDir)
+            }
             // Setup install task
-            project.tasks.register(GO_INSTALL_TASK, InstallTask::class.java) { installTask ->
+            project.tasks.register(GO_INSTALL_TASK, InstallGoTask::class.java) { installTask ->
                 installTask.group = GO_PLUGIN_GROUP
                 installTask.description = "Install Golang"
                 installTask.goVersion.set(project.ext.goVersion)
                 installTask.defaultGoVersion.set(project.ext.defaultGoVersion)
                 installTask.rootDir.set(project.rootDir)
+
+                installTask.dependsOn(downloadGoTask)
             }
 
             // Setup build tasks

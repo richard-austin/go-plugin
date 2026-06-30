@@ -18,7 +18,7 @@ import java.io.File
 import javax.inject.Inject
 
 @CacheableTask
-abstract class InstallTask @Inject constructor(
+abstract class DownloadGoTask @Inject constructor(
     @get:Internal val projectLayout: ProjectLayout
 ) : DefaultTask() {
     @get:Input
@@ -29,6 +29,7 @@ abstract class InstallTask @Inject constructor(
     abstract val rootDir: Property<File>
 
     init {
+        println("DownloadGoTask init")
         onlyIf {
             installGo()
         }
@@ -39,7 +40,8 @@ abstract class InstallTask @Inject constructor(
     }
 
     @TaskAction
-    fun install() {
+    fun downloadGo() {
+        println("DownloadGoTask downloadGo")
         val buildDir = projectLayout.buildDirectory.get().asFile
         val golangVersion = goVersion.get().ifEmpty {
             defaultGoVersion.get()
@@ -66,7 +68,7 @@ abstract class InstallTask @Inject constructor(
 
             // Extract the file
             logger.lifecycle("Extracting tar.gz archive")
-            PluginUtils.extractTarGz(project, outputFile, destinationDir)
+        //    PluginUtils.extractTarGz(project, outputFile, destinationDir)
 
             logger.lifecycle("Done")
         }
