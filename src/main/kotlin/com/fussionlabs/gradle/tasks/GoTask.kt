@@ -47,16 +47,16 @@ abstract class GoTask : AbstractExecTask<GoTask>(GoTask::class.java) {
     @TaskAction
     override fun exec()
     {
-
         val golangVersion = goVersion.get().ifEmpty {
             defaultGoVersion.get()
         }
-        val goBinary = goBinary(golangVersion, rootDir.get())
+        val goBinary = goBinary(goVersion.get(), defaultGoVersion.get(), rootDir.get())
+        logger.info("goBinary: $goBinary")
+        logger.info("goVersion: $golangVersion")
         // Configure GOROOT (if needed)
         if (goBinary != GO_BINARY) {
             goTaskEnv["GOROOT"] = "${rootDir.get()}/$GRADLE_FILES_DIR/$GO_SETUP_DIR-$golangVersion/go"
         }
-
         executable = goBinary
         args = goTaskArgs
         goTaskEnv.forEach { (key, value) ->

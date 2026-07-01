@@ -4,6 +4,8 @@ import com.fussionlabs.gradle.GO_SETUP_DIR
 import com.fussionlabs.gradle.GRADLE_FILES_DIR
 import com.fussionlabs.gradle.utils.PluginUtils.getArch
 import com.fussionlabs.gradle.utils.PluginUtils.getOs
+import com.fussionlabs.gradle.utils.PluginUtils.goBinary
+import com.fussionlabs.gradle.utils.PluginUtils.goInstalled
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ArchiveOperations // Required for tarTree
 import org.gradle.api.file.FileSystemOperations // Required for copy
@@ -33,34 +35,41 @@ abstract class InstallGoTask @Inject constructor(
     abstract val rootDir: Property<File>
 
     init {
-        println("InstallGoTask init")
         group = "go"
         description = "Installs Go"
+        onlyIf {
+            installGo()
+        }
+    }
+    fun installGo(): Boolean {
+        return (!goInstalled() || goVersion.get().isNotEmpty())
     }
 
+
     @TaskAction
-    fun installGo() {
-        println("InstallGoTask installGo")
+    fun installGoBinaries() {
         val golangVersion = goVersion.get().ifEmpty {
             defaultGoVersion.get()
         }
 
-        val buildDir = projectLayout.buildDirectory.get().asFile
-        val tarfileLocation = File(buildDir, "go${golangVersion}.${getOs()}-${getArch()}.tar.gz")
-        val outputDir = File(rootDir.get(), "$GRADLE_FILES_DIR/$GO_SETUP_DIR-$golangVersion")
+        if (!File(goBinary(golangVersion, defaultGoVersion.get(), rootDir.get())).exists()) {
+            val buildDir = projectLayout.buildDirectory.get().asFile
+            val tarfileLocation = File(buildDir, "go${golangVersion}.${getOs()}-${getArch()}.tar.gz")
+            val outputDir = File(rootDir.get(), "$GRADLE_FILES_DIR/$GO_SETUP_DIR-$golangVersion")
 
-        println("Extracting  ${tarfileLocation.absolutePath} ::::: into ${outputDir.absolutePath}")
+            logger.lifecycle("Extracting  ${tarfileLocation.absolutePath} ::::: into ${outputDir.absolutePath}")
 
-        // Perform the extraction during execution phase
-        fileSystemOperations.copy { spec ->
-            // Use archiveOperations to create the tarTree
-            spec.from(archiveOperations.tarTree(tarfileLocation))
-            spec.into(outputDir)
-        }
+            // Perform the extraction during execution phase
+            fileSystemOperations.copy { spec ->
+                // Use archiveOperations to create the tarTree
+                spec.from(archiveOperations.tarTree(tarfileLocation))
+                spec.into(outputDir)
+            }
 
-        // Delete the tarfile safely after successful extraction
-        if (tarfileLocation.exists()) {
-            tarfileLocation.delete()
+            // Delete the tarfile safely after successful extraction
+            if (tarfileLocation.exists()) {
+                tarfileLocation.delete()
+            }
         }
     }
 }

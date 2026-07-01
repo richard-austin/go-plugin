@@ -28,7 +28,7 @@ object PluginUtils {
         return process.exitValue() == 0
     }
 
-    fun goInstalled(): Boolean{
+    fun goInstalled(): Boolean {
         return binaryExists(GO_BINARY)
     }
 
@@ -44,7 +44,7 @@ object PluginUtils {
         val arch = System.getProperty("os.arch")
         return if (arch == "x86_64") {
             "amd64"
-        } else if (arch == "aarch64")  {
+        } else if (arch == "aarch64") {
             "arm64"
         } else {
             arch
@@ -64,24 +64,11 @@ object PluginUtils {
         }
     }
 
-    fun extractTarGz(project: Project, tarFile: File, destinationDir: File) {
-        if(tarFile.exists() && destinationDir.exists()) {
-            project.copy {
-                it.from(project.tarTree(tarFile))
-                it.into(destinationDir)
-            }
-            tarFile.delete()
-        }
-    }
-
-    fun goVersion(project: Project): String {
-        return project.ext.goVersion.ifEmpty { project.ext.defaultGoVersion }
-    }
-
-    fun goBinary(goVersion: String, rootDir: File): String {
-        val goVersion = goVersion
-        return if(goInstalled() && goVersion.isEmpty()) {
+    fun goBinary(goVersion: String, defaultGoVersion: String, rootDir: File): String {
+        return if (goInstalled() && goVersion.isEmpty()) {
             GO_BINARY
+        } else if (!goInstalled() && goVersion.isEmpty()) {
+            "${rootDir}/$GRADLE_FILES_DIR/$GO_SETUP_DIR-$defaultGoVersion/go/bin/$GO_BINARY"
         } else {
             "${rootDir}/$GRADLE_FILES_DIR/$GO_SETUP_DIR-$goVersion/go/bin/$GO_BINARY"
         }

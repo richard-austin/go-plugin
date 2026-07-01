@@ -29,7 +29,6 @@ abstract class DownloadGoTask @Inject constructor(
     abstract val rootDir: Property<File>
 
     init {
-        println("DownloadGoTask init")
         onlyIf {
             installGo()
         }
@@ -41,7 +40,6 @@ abstract class DownloadGoTask @Inject constructor(
 
     @TaskAction
     fun downloadGo() {
-        println("DownloadGoTask downloadGo")
         val buildDir = projectLayout.buildDirectory.get().asFile
         val golangVersion = goVersion.get().ifEmpty {
             defaultGoVersion.get()
@@ -50,26 +48,19 @@ abstract class DownloadGoTask @Inject constructor(
         val url = "https://go.dev/dl/go${golangVersion}.${getOs()}-${getArch()}.tar.gz"
         val outputLocation = "$buildDir/go${golangVersion}.${getOs()}-${getArch()}.tar.gz"
 
-        if (!File(goBinary(golangVersion, rootDir.get())).exists()) {
+        if (!File(goBinary(goVersion.get(), defaultGoVersion.get(),rootDir.get())).exists()) {
             // Setup the build directory
             buildDir.mkdirs()
 
             val outputFile = File(outputLocation)
             outputFile.createNewFile()
-            println(rootDir.get().toString())
             val destinationDir = File("${rootDir.get()}/$GRADLE_FILES_DIR/$GO_SETUP_DIR-$golangVersion")
             destinationDir.mkdirs()
 
             // Download the file
             logger.lifecycle("Downloading Go version $golangVersion")
             logger.info("Source URL: $url")
-            logger.info("Destination Path: $destinationDir")
             PluginUtils.downloadFile(url, outputFile)
-
-            // Extract the file
-            logger.lifecycle("Extracting tar.gz archive")
-        //    PluginUtils.extractTarGz(project, outputFile, destinationDir)
-
             logger.lifecycle("Done")
         }
     }
