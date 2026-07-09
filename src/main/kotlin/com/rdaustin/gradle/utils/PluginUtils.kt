@@ -1,9 +1,9 @@
-package com.fussionlabs.gradle.utils
+package com.rdaustin.gradle.utils
 
-import com.fussionlabs.gradle.GO_BINARY
-import com.fussionlabs.gradle.GO_SETUP_DIR
-import com.fussionlabs.gradle.GRADLE_FILES_DIR
-import com.fussionlabs.gradle.PluginExtension
+import com.rdaustin.gradle.GO_BINARY
+import com.rdaustin.gradle.GO_SETUP_DIR
+import com.rdaustin.gradle.GRADLE_FILES_DIR
+import com.rdaustin.gradle.PluginExtension
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.GradleException
 import org.gradle.api.Project

@@ -1,10 +1,10 @@
-package com.fussionlabs.gradle
+package com.rdaustin.gradle
 
-import com.fussionlabs.gradle.tasks.BuildTask
-import com.fussionlabs.gradle.tasks.DownloadGoTask
-import com.fussionlabs.gradle.tasks.InstallGoTask
-import com.fussionlabs.gradle.tasks.TestTask
-import com.fussionlabs.gradle.utils.PluginUtils.ext
+import com.rdaustin.gradle.tasks.BuildTask
+import com.rdaustin.gradle.tasks.DownloadGoTask
+import com.rdaustin.gradle.tasks.InstallGoTask
+import com.rdaustin.gradle.tasks.TestTask
+import com.rdaustin.gradle.utils.PluginUtils.ext
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.internal.extensions.stdlib.capitalized

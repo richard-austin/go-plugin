@@ -1,4 +1,4 @@
-package com.fussionlabs.gradle
+package com.rdaustin.gradle
 
 open class PluginExtension {
     var moduleName:String = ""

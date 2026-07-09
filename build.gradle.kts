@@ -12,8 +12,8 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version("2.4.20-Beta1")
 }
 
-version = "0.7.0"
-group = "com.fussionlabs.gradle"
+version = "0.7.1"
+group = "com.rdaustin.gradle"
 
 repositories {
     mavenLocal()
@@ -48,9 +48,9 @@ gradlePlugin {
     vcsUrl = "https://github.com/dm0275/go-plugin.git"
     plugins {
         create("go-plugin") {
-            id = "com.fussionlabs.gradle.go-plugin"
+            id = "com.rdaustin.gradle.go-plugin"
             displayName = "Go Gradle plugin"
-            implementationClass = "com.fussionlabs.gradle.GoPlugin"
+            implementationClass = "com.rdaustin.gradle.GoPlugin"
             tags = listOf("go", "golang")
             description = "The `Go-Plugin` is a Gradle plugin for Go projects. This plugin does not intend to replace" +
                     " Go's native dependency management system, instead this plugin focuses on replacing traditional " +

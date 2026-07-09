@@ -1,11 +1,11 @@
-package com.fussionlabs.gradle.tasks
+package com.rdaustin.gradle.tasks
 
-import com.fussionlabs.gradle.GO_BINARY
-import com.fussionlabs.gradle.GO_INSTALL_TASK
-import com.fussionlabs.gradle.GO_SETUP_DIR
-import com.fussionlabs.gradle.GRADLE_FILES_DIR
-import com.fussionlabs.gradle.utils.PluginUtils.ext
-import com.fussionlabs.gradle.utils.PluginUtils.goBinary
+import com.rdaustin.gradle.GO_BINARY
+import com.rdaustin.gradle.GO_INSTALL_TASK
+import com.rdaustin.gradle.GO_SETUP_DIR
+import com.rdaustin.gradle.GRADLE_FILES_DIR
+import com.rdaustin.gradle.utils.PluginUtils.ext
+import com.rdaustin.gradle.utils.PluginUtils.goBinary
 import javax.inject.Inject
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property

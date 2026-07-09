@@ -1,12 +1,12 @@
-package com.fussionlabs.gradle.tasks
+package com.rdaustin.gradle.tasks
 
-import com.fussionlabs.gradle.GO_SETUP_DIR
-import com.fussionlabs.gradle.GRADLE_FILES_DIR
-import com.fussionlabs.gradle.utils.PluginUtils
-import com.fussionlabs.gradle.utils.PluginUtils.getArch
-import com.fussionlabs.gradle.utils.PluginUtils.getOs
-import com.fussionlabs.gradle.utils.PluginUtils.goBinary
-import com.fussionlabs.gradle.utils.PluginUtils.goInstalled
+import com.rdaustin.gradle.GO_SETUP_DIR
+import com.rdaustin.gradle.GRADLE_FILES_DIR
+import com.rdaustin.gradle.utils.PluginUtils
+import com.rdaustin.gradle.utils.PluginUtils.getArch
+import com.rdaustin.gradle.utils.PluginUtils.getOs
+import com.rdaustin.gradle.utils.PluginUtils.goBinary
+import com.rdaustin.gradle.utils.PluginUtils.goInstalled
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ProjectLayout
 import org.gradle.api.provider.Property

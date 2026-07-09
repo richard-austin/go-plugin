@@ -1,4 +1,4 @@
-package com.fussionlabs.gradle
+package com.rdaustin.gradle
 
 const val GO_BINARY = "go"
 const val GO_PLUGIN_EXTENSION = "go"

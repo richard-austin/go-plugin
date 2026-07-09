@@ -1,4 +1,4 @@
-package com.fussionlabs.gradle
+package com.rdaustin.gradle
 
 import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder

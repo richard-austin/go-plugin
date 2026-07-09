@@ -1,4 +1,6 @@
 # Go Plugin
+This is a fork of https://github.com/dm0275/go-plugin modified to provide 
+compatibility with gradle 10.
 ## Overview
 The `Go-Plugin` is a Gradle plugin for Go projects. This plugin does not intend to replace Go's native dependency management system, 
 instead this plugin focuses on replacing traditional task orchestrators like Make, offering a more versatile and reusable approach for task automation.
@@ -9,14 +11,14 @@ Add the following to apply the plugin to your project:
 **Groovy DSL**:
 ```groovy
 plugins {
-    id "com.fussionlabs.gradle.go-plugin" version "$version"
+    id "com.rdaustin.gradle.go-plugin" version "$version"
 }
 ```
 
 **Kotling DSL**:
 ```kotlin
 plugins {
-    id("com.fussionlabs.gradle.go-plugin") version("$version")
+    id("com.rdaustin.gradle.go-plugin") version("$version")
 }
 ```
 
@@ -62,7 +64,7 @@ go {
 ## Custom Tasks
 In addition to the default tasks, you can create custom Go tasks for basically any Go command:
 ```kotlin
-tasks.register("goVersion", com.fussionlabs.gradle.tasks.GoTask::class.java) {
+tasks.register("goVersion", com.rdaustin.gradle.tasks.GoTask::class.java) {
     goTaskArgs = mutableListOf("version")
 }
 ```

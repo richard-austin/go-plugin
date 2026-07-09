@@ -1,7 +1,7 @@
-package com.fussionlabs.gradle.tasks
+package com.rdaustin.gradle.tasks
 
-import com.fussionlabs.gradle.utils.PluginUtils.ext
-import com.fussionlabs.gradle.utils.PluginUtils.toInt
+import com.rdaustin.gradle.utils.PluginUtils.ext
+import com.rdaustin.gradle.utils.PluginUtils.toInt
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.Input
