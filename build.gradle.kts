@@ -22,7 +22,7 @@ repositories {
 
 kotlin {
     jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
