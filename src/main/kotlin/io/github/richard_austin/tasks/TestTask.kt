@@ -1,6 +1,6 @@
-package io.github.richardaustin.tasks
+package io.github.richard_austin.tasks
 
-import io.github.richardaustin.utils.PluginUtils.ext
+import io.github.richard_austin.utils.PluginUtils.ext
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.InputFiles

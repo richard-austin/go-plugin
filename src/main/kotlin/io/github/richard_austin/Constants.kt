@@ -1,4 +1,4 @@
-package io.github.richardaustin
+package io.github.richard_austin
 
 const val GO_BINARY = "go"
 const val GO_PLUGIN_EXTENSION = "go"

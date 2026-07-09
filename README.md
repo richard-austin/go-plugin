@@ -11,14 +11,14 @@ Add the following to apply the plugin to your project:
 **Groovy DSL**:
 ```groovy
 plugins {
-    id "io.github.richardaustingo-plugin" version "$version"
+    id "io.github.richard_austin.go-plugin" version "$version"
 }
 ```
 
 **Kotling DSL**:
 ```kotlin
 plugins {
-    id("io.github.richardaustingo-plugin") version("$version")
+    id("io.github.richard_austin.go-plugin") version("$version")
 }
 ```
 
@@ -64,7 +64,7 @@ go {
 ## Custom Tasks
 In addition to the default tasks, you can create custom Go tasks for basically any Go command:
 ```kotlin
-tasks.register("goVersion", io.github.richardaustin.tasks.GoTask::class.java) {
+tasks.register("goVersion", io.github.richard_austin.tasks.GoTask::class.java) {
     goTaskArgs = mutableListOf("version")
 }
 ```

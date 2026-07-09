@@ -1,10 +1,10 @@
-package io.github.richardaustin
+package io.github.richard_austin
 
-import io.github.richardaustin.tasks.BuildTask
-import io.github.richardaustin.tasks.DownloadGoTask
-import io.github.richardaustin.tasks.InstallGoTask
-import io.github.richardaustin.tasks.TestTask
-import io.github.richardaustin.utils.PluginUtils.ext
+import io.github.richard_austin.tasks.BuildTask
+import io.github.richard_austin.tasks.DownloadGoTask
+import io.github.richard_austin.tasks.InstallGoTask
+import io.github.richard_austin.tasks.TestTask
+import io.github.richard_austin.utils.PluginUtils.ext
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.internal.extensions.stdlib.capitalized

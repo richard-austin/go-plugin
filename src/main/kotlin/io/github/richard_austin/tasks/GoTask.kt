@@ -1,11 +1,11 @@
-package io.github.richardaustin.tasks
+package io.github.richard_austin.tasks
 
-import io.github.richardaustin.GO_BINARY
-import io.github.richardaustin.GO_INSTALL_TASK
-import io.github.richardaustin.GO_SETUP_DIR
-import io.github.richardaustin.GRADLE_FILES_DIR
-import io.github.richardaustin.utils.PluginUtils.ext
-import io.github.richardaustin.utils.PluginUtils.goBinary
+import io.github.richard_austin.GO_BINARY
+import io.github.richard_austin.GO_INSTALL_TASK
+import io.github.richard_austin.GO_SETUP_DIR
+import io.github.richard_austin.GRADLE_FILES_DIR
+import io.github.richard_austin.utils.PluginUtils.ext
+import io.github.richard_austin.utils.PluginUtils.goBinary
 import javax.inject.Inject
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property

@@ -1,4 +1,4 @@
-package io.github.richardaustin
+package io.github.richard_austin
 
 open class PluginExtension {
     var moduleName:String = ""
