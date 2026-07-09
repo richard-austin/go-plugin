@@ -1,12 +1,12 @@
-package com.rdaustin.gradle.tasks
+package io.github.richardaustin.tasks
 
-import com.rdaustin.gradle.GO_SETUP_DIR
-import com.rdaustin.gradle.GRADLE_FILES_DIR
-import com.rdaustin.gradle.utils.PluginUtils
-import com.rdaustin.gradle.utils.PluginUtils.getArch
-import com.rdaustin.gradle.utils.PluginUtils.getOs
-import com.rdaustin.gradle.utils.PluginUtils.goBinary
-import com.rdaustin.gradle.utils.PluginUtils.goInstalled
+import io.github.richardaustin.GO_SETUP_DIR
+import io.github.richardaustin.GRADLE_FILES_DIR
+import io.github.richardaustin.utils.PluginUtils
+import io.github.richardaustin.utils.PluginUtils.getArch
+import io.github.richardaustin.utils.PluginUtils.getOs
+import io.github.richardaustin.utils.PluginUtils.goBinary
+import io.github.richardaustin.utils.PluginUtils.goInstalled
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ProjectLayout
 import org.gradle.api.provider.Property

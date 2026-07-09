@@ -1,4 +1,4 @@
-package com.rdaustin.gradle
+package io.github.richardaustin
 
 const val GO_BINARY = "go"
 const val GO_PLUGIN_EXTENSION = "go"

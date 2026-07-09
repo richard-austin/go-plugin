@@ -1,4 +1,4 @@
-package com.rdaustin.gradle
+package io.github.richardaustin
 
 open class PluginExtension {
     var moduleName:String = ""

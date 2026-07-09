@@ -1,4 +1,4 @@
-package com.rdaustin.gradle
+package io.github.richardaustin
 
 import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder

@@ -1,9 +1,9 @@
-package com.rdaustin.gradle.utils
+package io.github.richardaustin.utils
 
-import com.rdaustin.gradle.GO_BINARY
-import com.rdaustin.gradle.GO_SETUP_DIR
-import com.rdaustin.gradle.GRADLE_FILES_DIR
-import com.rdaustin.gradle.PluginExtension
+import io.github.richardaustin.GO_BINARY
+import io.github.richardaustin.GO_SETUP_DIR
+import io.github.richardaustin.GRADLE_FILES_DIR
+import io.github.richardaustin.PluginExtension
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.GradleException
 import org.gradle.api.Project
