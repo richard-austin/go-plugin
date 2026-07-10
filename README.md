@@ -10,15 +10,19 @@ Add the following to apply the plugin to your project:
 
 **Groovy DSL**:
 ```groovy
+import io.github.richard_austin.tasks.GoTask
+
 plugins {
-    id "io.github.richard_austin.go-plugin" version "$version"
+    id "io.github.richard-austin.go-plugin" version "$version"
 }
 ```
 
 **Kotling DSL**:
 ```kotlin
+import io.github.richard_austin.tasks.GoTask
+
 plugins {
-    id("io.github.richard_austin.go-plugin") version("$version")
+    id("io.github.richard-austin.go-plugin") version("$version")
 }
 ```
 
@@ -54,7 +58,7 @@ go {
     cgoEnabled = true
     os = listOf("linux")
     arch = listOf("amd64")
-    goVersion = "1.20.13"
+    goVersion = "1.25.4"
     ldFlags = mapOf("key1" to "value1", "key2" to "value2")
     extraBuildArgs = listOf("arg1", "arg2")
     extraTestArgs = listOf("arg3", "arg4")
