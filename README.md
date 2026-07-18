@@ -1,5 +1,5 @@
 # Go Plugin
-This is a fork of https://github.com/dm0275/go-plugin modified to provide 
+This is a fork of https://github.com/dm0275/go-plugin modified by Richard Austin to provide 
 compatibility with gradle 10.
 ## Overview
 The `Go-Plugin` is a Gradle plugin for Go projects. This plugin does not intend to replace Go's native dependency management system, 

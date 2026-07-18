@@ -1,3 +1,4 @@
+// Modified by Richard Austin in 2026
 package io.github.richard_austin.utils
 
 import io.github.richard_austin.GO_BINARY

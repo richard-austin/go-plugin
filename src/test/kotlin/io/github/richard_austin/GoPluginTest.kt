@@ -1,3 +1,4 @@
+// Modified by Richard Austin in 2026
 package io.github.richard_austin
 
 import org.gradle.api.Project
