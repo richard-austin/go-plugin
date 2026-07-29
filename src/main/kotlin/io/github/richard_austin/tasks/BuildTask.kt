@@ -1,77 +1,84 @@
-// Modified by Richard Austin in 2026
 package io.github.richard_austin.tasks
 
-import io.github.richard_austin.utils.PluginUtils.ext
-import io.github.richard_austin.utils.PluginUtils.toInt
+import org.gradle.api.file.ConfigurableFileCollection
+import org.gradle.api.provider.ListProperty
+import org.gradle.api.provider.MapProperty
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputFile
+import java.io.File
 
 @CacheableTask
 abstract class BuildTask : GoTask() {
-    @get:Input
-    var os = ""
 
     @get:Input
-    var arch = ""
+    abstract val os: Property<String>
 
     @get:Input
-    var ldFlagsConfig = mapOf<String, String>()
+    abstract val arch: Property<String>
 
-    @Classpath
-    @InputFiles
-    var inputFiles = project.fileTree(project.rootDir)
-        .matching{ matchingFile ->
-            matchingFile.include("**/**.go")
-        }
+    @get:Input
+    abstract val ldFlagsConfig: MapProperty<String, String>
 
-    @OutputFile
-    var outputBinary = ""
-//    override fun getObjectFactory(): ObjectFactory {
-//        return super.getObjectFactory()
-//    }
-//
-//    override fun getExecActionFactory(): ExecActionFactory {
-//        return super.getExecActionFactory()
-//    }
+    @get:Input
+    abstract val cgoEnabledInt: Property<Int>
+
+    @get:Input
+    abstract val extraBuildArgs: ListProperty<String>
+
+    @get:Input
+    abstract val projectRootDir: Property<File>
+
+    @get:Classpath
+    @get:InputFiles
+    abstract val inputFiles: ConfigurableFileCollection
+
+    @get:Input
+    abstract val outputBinary: Property<String>
+
+    @get:OutputFile
+    abstract val outputBinaryFile: Property<File>
 
     override fun exec() {
-        // Setup task environment
-        goTaskEnv["GOOS"] = os
-        goTaskEnv["GOARCH"] = arch
-        goTaskEnv["CGO_ENABLED"] = project.ext.cgoEnabled.toInt()
+// Setup task environment safely using properties
+        goTaskEnv["GOOS"] = os.get()
+        goTaskEnv["GOARCH"] = arch.get()
+        goTaskEnv["CGO_ENABLED"] = cgoEnabledInt.get().toString()
+// Setup build dir safely using injected DirectoryProperty
+        val binaryFile = outputBinaryFile.get()
+        binaryFile.parentFile.mkdirs()
 
-        // Setup build dir
-        val buildDir = project.layout.buildDirectory.get().asFile
-        buildDir.mkdirs()
-
-        // Configure build args
+// Configure build args
         val buildArgs = mutableListOf("build")
 
-        // Configure ldFlags
+// Configure ldFlags
         var ldFlags = ""
-        if (ldFlagsConfig.isNotEmpty()) {
+        val flagsMap = ldFlagsConfig.get()
+        if (flagsMap.isNotEmpty()) {
             ldFlags += "-ldflags="
-            ldFlagsConfig.forEach { (key, value) ->
-                ldFlags += " -X '$key=\"$value\"' "
+            flagsMap.forEach { (key, value) ->
+                ldFlags += " -X '$key=$value' "
             }
             buildArgs.add(ldFlags)
         }
 
-        // Configure output
-        buildArgs.addAll(listOf("-o", "$buildDir/$outputBinary"))
+// Configure output path
+        buildArgs.addAll(listOf("-o", binaryFile.absolutePath))
 
-        // Add extraTestArgs (if defined)
-        project.ext.extraBuildArgs.forEach { testArg ->
+// Add extraBuildArgs safely
+        extraBuildArgs.get().forEach { testArg ->
             buildArgs.add(testArg)
         }
 
-        // Configure Project DIR
-        buildArgs.add("${project.rootDir}")
-        goTaskArgs = buildArgs
+// Configure Project DIR
+        buildArgs.add(projectRootDir.get().absolutePath)
 
+        goTaskArgs = buildArgs
         super.exec()
+
     }
+
 }
