@@ -13,7 +13,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version ("2.4.20-Beta1")
 }
 
-version = "0.7.2"
+version = "0.7.3"
 group = "io.github.richard-austin"
 
 repositories {
