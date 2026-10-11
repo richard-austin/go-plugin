@@ -53,7 +53,8 @@ gradlePlugin {
             displayName = "Go Gradle plugin"
             implementationClass = "io.github.richard_austin.GoPlugin"
             tags = listOf("go", "golang")
-            description = "This is a fork of https://github.com/dm0275/go-plugin modified to provide compatibility with gradle 10."
+            description = "This is a fork of https://github.com/dm0275/go-plugin modified to provide compatibility with gradle 10."+
+                    "This has been updated in version 0.7.3 to include a Java toolchain resolver to maintain Gradle 10 compatibility."
                     "The `Go-Plugin` is a Gradle plugin for Go projects. This plugin does not intend to replace" +
                     " Go's native dependency management system, instead this plugin focuses on replacing traditional " +
                     "task orchestrators like Make, offering a more versatile and reusable approach for task automation."

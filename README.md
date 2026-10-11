@@ -5,6 +5,9 @@ compatibility with gradle 10.
 The `Go-Plugin` is a Gradle plugin for Go projects. This plugin does not intend to replace Go's native dependency management system, 
 instead this plugin focuses on replacing traditional task orchestrators like Make, offering a more versatile and reusable approach for task automation.
 
+## Latest update
+Toolchain resolver added to maintain compatibility with Gradle 10. 
+
 ## Usage
 Add the following to apply the plugin to your project:
 
